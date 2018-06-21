@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Gustavo Luszczynski <gluszczy@redhat.com>
+# Leandro Sanches <lsanches@redhat.com>
 
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
@@ -11,10 +11,10 @@ fi
 DNSMASQ_CONTAINER_NAME="dnsmasq"
 
 # docker user
-DOCKER_USER="luszczynski"
+DOCKER_USER="lsanches"
 
 # Container Operation System
-OS_CONTAINER="centos7"
+OS_CONTAINER="rhel7"
 
 
 function cleanup() {
@@ -29,6 +29,7 @@ function updateDNS() {
 	# create resolv.conf
 	echo "nameserver $1" > /etc/resolv.conf
 	echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+	echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 }
 
 # $1: Parameters
